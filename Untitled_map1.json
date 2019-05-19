@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "Untitled layer",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "Slow Burn Hot Chicken", "description": null }, "geometry": { "type": "Point", "coordinates": [ -86.690167, 36.278768 ] } },
+{ "type": "Feature", "properties": { "Name": "Prince's Hot Chicken Shack", "description": null }, "geometry": { "type": "Point", "coordinates": [ -86.7608536, 36.2299939 ] } },
+{ "type": "Feature", "properties": { "Name": "TKO", "description": null }, "geometry": { "type": "Point", "coordinates": [ -86.7253034, 36.224419 ] } }
+]
+}
