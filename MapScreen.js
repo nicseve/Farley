@@ -1,6 +1,6 @@
 import React from 'react';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
-import {Marker} from 'react-native-maps';
+import {Marker,Polygon} from 'react-native-maps';
 import {View,StyleSheet,TouchableOpacity} from 'react-native';
 import styles from './Styles.js'
 
@@ -286,6 +286,8 @@ export default class MapScreen extends React.Component {
                 longitudeDelta: 50.0,
             },
             markers: [],
+            polygonData: require('./polygons'),
+            polygons:null
         }
     };
 
@@ -318,8 +320,38 @@ export default class MapScreen extends React.Component {
         data.features.forEach((marker) => {
             markers.push([marker["properties"]["Name"], {longitude: marker["geometry"]["coordinates"][0],latitude: marker["geometry"]["coordinates"][1]}])
         });
-        this.setState({markers:markers});
-    }
+
+
+        // const polygon = this.state.polygonData.geometries[0].map(coordsArr => {
+        //     let coords = {
+        //         latitude: coordsArr[1],
+        //         longitude: coordsArr[0],
+        //     };
+        //     return coords;
+        // });
+        // console.log(polygon)
+
+
+        // let rawPolygonData = this.state.polygonData.geometries[0]["coordinates"][0][0];
+        let rawPolygonData = this.state.polygonData.geometries[0];
+        console.log("raw poly data",rawPolygonData);
+        // let polygoncoords = [];
+        // rawPolygonData.forEach((coordinate) => {
+        //     polygoncoords.push({latitude: coordinate[0], longitude: coordinate[1]})
+        // });
+        //
+        // this.setState({markers:markers});
+        // console.log(polygoncoords);
+        // this.setState({polygons:polygoncoords});
+        //
+        // console.log(this.state.polygons)
+    };
+
+    // componentWillMount(){
+    // }
+
+
+
         // onRegionChange(region) {
         //     this.setState({region: region });
         // }
@@ -332,7 +364,7 @@ export default class MapScreen extends React.Component {
                     provider={PROVIDER_GOOGLE}
                     style={{...StyleSheet.absoluteFillObject}}
                     region={this.state.region}
-                    customMapStyle={mapStyle}
+                    // customMapStyle={mapStyle}
                 >
                     {this.state.markers.map(marker => (
                         <Marker
@@ -343,15 +375,21 @@ export default class MapScreen extends React.Component {
                         />
                     ))}
 
-                    <Polygon
-                        key={this.state.editing.id}
-                        coordinates={this.state.editing.coordinates}
-                        holes={this.state.editing.holes}
-                        strokeColor="#000"
-                        fillColor="rgba(255,0,0,0.5)"
-                        strokeWidth={1}
-                    />
-                    
+                    {/*<Polygon*/}
+                        {/*coordinates={this.state.polygons}*/}
+                        {/*strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider*/}
+                        {/*strokeColors={[*/}
+                            {/*'#7F0000',*/}
+                            {/*'#00000000', // no color, creates a "long" gradient between the previous and next coordinate*/}
+                            {/*'#B24112',*/}
+                            {/*'#E5845C',*/}
+                            {/*'#238C23',*/}
+                            {/*'#7F0000'*/}
+                        {/*]}*/}
+                        {/*strokeWidth={6}*/}
+                        {/*fillColor={'#7F0000'}*/}
+                    {/*/>*/}
+
                 </MapView>
                 <TouchableOpacity/>
 

@@ -15,7 +15,7 @@ const RootStack = createStackNavigator(
         Login: LoginScreen
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'Map',
     }
 );
 
